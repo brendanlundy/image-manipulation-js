@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>Computational Photography</title> 
+
+		<style> 
+			#canvas {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -180px 0 0 20px;
+			    transform: rotateY(180deg);
+			    -webkit-transform:rotateY(180deg);
+			    -moz-transform:rotateY(180deg);
+			}
+			 
+			#video {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -180px 0 0 -500px;
+			}
+
+			#characterSelection > form > label > input{
+			  display:none;
+			}
+
+			label > input + img{
+			  cursor:pointer;
+			  border:2px solid transparent;
+			}
+
+			label > input:checked + img{
+			  border:2px solid #f00;
+			}
+		</style>
+	</head>
+
+
+	<body>
+		<p>To see the video, make sure you allow access to the webcam and have good lighting.</p>
+		<p>The input video from your camera is on the left and the output is on the right. Try moving to see the effects.</p>
+
+		<br>
+		<p>Health: </p>
+		<progress id="health" value="100" max="100"></progress>
+
+		<p id="timerText">Current Score:  0 : 00</p>
+		<p id="bestTime">Best Score:  0 : 00</p>
+		<input type="button" onClick="startGame();" value="Start Game" />
+
+		<video id="video" width="250" height="250" autoplay></video>
+		<canvas id="canvas" width="250" height="250"></canvas>
+
+		<br>
+		<form action="form_action.asp">
+			<label>
+		  		<input type="radio" name="videoEffect" onclick="changeVideoEffect(this.value)" value="epsilon" checked="checked"> Epsilon Video
+		  	</label> 
+		  	<br>
+		  	
+		  	<label>
+		  		<input type="radio" name="videoEffect" onclick="changeVideoEffect(this.value)" value="swapColors"> Swap color channel 
+		  	</label>
+		  	<br>
+		  
+		  	<label>
+		  		<input type="radio" name="videoEffect" onclick="changeVideoEffect(this.value)" value="edge"> Edge detection 
+		  	</label>
+		  	<br>
+		</form>
+
+
+		<div id="characterSelection">
+			<form action="form_action.asp">
+				<label>
+				  	<input type="radio" name="character" onclick="selectCharacter(this.value)" value="playerRed.png" checked="checked">
+				 	<img src="playerRed.png">
+				</label>
+				<label>
+			  		<input type="radio" name="character" onclick="selectCharacter(this.value)" value="playerGreen.png">
+			  		<img src="playerGreen.png">
+				</label>
+				<label>
+			  		<input type="radio" name="character" onclick="selectCharacter(this.value)" value="playerPurple.png">
+			  		<img src="playerPurple.png">
+				</label>
+			</form>
+		</div>
+
+		<script src="video.js"></script>
+	</body>
+</html>
